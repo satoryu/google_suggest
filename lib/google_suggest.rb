@@ -59,8 +59,13 @@ class GoogleSuggest
   GOOGLE_HOST = 'www.google.com'
 
   def http
-    proxy_url = URI.parse(@proxy) if @proxy
-    Net::HTTP.Proxy(proxy_url.host, proxy_url.port).new(GOOGLE_HOST)
+    if @proxy
+      proxy_url = URI.parse(@proxy) 
+      http_class = Net::HTTP.Proxy(proxy_url.host, proxy_url.port)
+    else
+      http_class = Net::HTTP
+    end
+    http_class.new(GOOGLE_HOST)
   end
 
   def http_get(path, query) 
