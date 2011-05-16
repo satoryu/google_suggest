@@ -21,10 +21,10 @@ describe GoogleSuggest do
         doc
       end
       google_suggest.stub!(:http_get) { res }
-      suggestions = google_suggest.suggest_from('google')
-      GoogleSuggest.stub!(:new).and_return { mock('google_suggest', :suggest_from => suggestions) }
+      suggestions = google_suggest.suggest_for('google')
+      GoogleSuggest.stub!(:new).and_return { mock('google_suggest', :suggest_for => suggestions) }
 
-      @suggestions = GoogleSuggest.suggest_from('google')
+      @suggestions = GoogleSuggest.suggest_for('google')
     end
      
     it do 
@@ -81,12 +81,12 @@ describe GoogleSuggest do
     end
 
     it do
-      suggestions = @google_suggest.suggest_from 'google'
+      suggestions = @google_suggest.suggest_for 'google'
       suggestions.size.should == 10
     end
 
     it 'all suggestions should have the value of the key \'suggest\' 'do
-      suggestions = @google_suggest.suggest_from 'google'
+      suggestions = @google_suggest.suggest_for 'google'
       suggestions.should be_all do |suggest|
         not suggest['suggest'].nil?
       end
@@ -94,7 +94,7 @@ describe GoogleSuggest do
 
 
     it 'all suggestions should have the value of the key \'num_queries\' 'do
-      suggestions = @google_suggest.suggest_from 'google'
+      suggestions = @google_suggest.suggest_for 'google'
       suggestions.should be_all do |suggest|
         not suggest['num_queries'].nil?
       end
@@ -119,7 +119,7 @@ describe GoogleSuggest do
       end
       @google_suggest.stub!(:http_get) { res }
     end
-      subject {@google_suggest.suggest_from('グーグル').shift['suggestion']}
+      subject {@google_suggest.suggest_for('グーグル').shift['suggestion']}
 
     its(:encoding) { should be Encoding.find("UTF-8") }
     it { should be_valid_encoding }

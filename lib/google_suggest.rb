@@ -25,8 +25,8 @@ class GoogleSuggest
       @@configure
     end
 
-    def suggest_from(keyword)
-      self.new.suggest_from(keyword)
+    def suggest_for(keyword)
+      self.new.suggest_for(keyword)
     end
   end
 
@@ -35,7 +35,7 @@ class GoogleSuggest
     @proxy = @@configure.proxy
   end
 
-  def suggest_from(keyword)
+  def suggest_for(keyword)
     query = {:output => 'toolbar',
              :hl => self.home_language,
              :q => URI.encode(keyword)}
