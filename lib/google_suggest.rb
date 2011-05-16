@@ -25,8 +25,8 @@ class GoogleSuggest
       @@configure
     end
 
-    def suggest_from(keyword)
-      self.new.suggest_from(keyword)
+    def suggest_for(keyword)
+      self.new.suggest_for(keyword)
     end
   end
 
@@ -35,7 +35,7 @@ class GoogleSuggest
     @proxy = @@configure.proxy
   end
 
-  def suggest_from(keyword)
+  def suggest_for(keyword)
     query = {:output => 'toolbar',
              :hl => self.home_language,
              :q => URI.encode(keyword)}
@@ -59,8 +59,13 @@ class GoogleSuggest
   GOOGLE_HOST = 'www.google.com'
 
   def http
-    proxy_url = URI.parse(@proxy) if @proxy
-    Net::HTTP.Proxy(proxy_url.host, proxy_url.port).new(GOOGLE_HOST)
+    if @proxy
+      proxy_url = URI.parse(@proxy) 
+      http_class = Net::HTTP.Proxy(proxy_url.host, proxy_url.port)
+    else
+      http_class = Net::HTTP
+    end
+    http_class.new(GOOGLE_HOST)
   end
 
   def http_get(path, query) 
