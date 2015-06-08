@@ -13,6 +13,6 @@ Gem::Specification.new do |spec|
     lib/**/*.rb
     spec/**/*
   ]]
-  spec.add_runtime_dependency "nokogiri"
+  spec.add_runtime_dependency "nokogiri", '~> 1.6.0'
 end
 
