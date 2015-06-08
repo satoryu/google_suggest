@@ -1,5 +1,4 @@
-# encoding: utf-8
-require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper'))
+require 'spec_helper'
 
 describe GoogleSuggest do
   context "default settiong" do
@@ -13,16 +12,16 @@ describe GoogleSuggest do
     before do
       google_suggest = GoogleSuggest.new
       res = Object.new
-      res.stub!(:body) do
+      allow(res).to receive(:body) do
         doc = nil
         File.open(File.join(File.dirname(__FILE__), 'sample_us.xml')) do |f|
           doc = f.read
         end
         doc
       end
-      google_suggest.stub!(:http_get) { res }
+      allow(google_suggest).to receive(:http_get) { res }
       suggestions = google_suggest.suggest_for('google')
-      GoogleSuggest.stub!(:new).and_return { mock('google_suggest', :suggest_for => suggestions) }
+      allow(GoogleSuggest).to receive(:new).and_return { double('google_suggest', :suggest_for => suggestions) }
 
       @suggestions = GoogleSuggest.suggest_for('google')
     end
@@ -69,15 +68,15 @@ describe GoogleSuggest do
 
     before do
       @google_suggest = GoogleSuggest.new
-      res = Object.new
-      res.stub!(:body) do
+      res = double(:response)
+      allow(res).to receive(:body) do
         doc = nil
         File.open(File.join(File.dirname(__FILE__), 'sample_us.xml')) do |f|
           doc = f.read
         end
         doc
       end
-      @google_suggest.stub!(:http_get) { res }
+      allow(@google_suggest).to receive(:http_get) { res }
     end
 
     it do
@@ -110,14 +109,14 @@ describe GoogleSuggest do
     before do
       @google_suggest = GoogleSuggest.new
       res = Object.new
-      res.stub!(:body) do
+      allow(res).to receive(:body) do
         doc = nil
         File.open(File.join(File.dirname(__FILE__), 'sample_ja.xml')) do |f|
           doc = f.read
         end
         doc
       end
-      @google_suggest.stub!(:http_get) { res }
+      allow(@google_suggest).to receive(:http_get) { res }
     end
       subject {@google_suggest.suggest_for('グーグル').shift['suggestion']}
 
