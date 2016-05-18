@@ -15,6 +15,7 @@ class GoogleSuggest
   end
 
   attr_accessor :home_language
+  attr_accessor :google_host
   attr_accessor :proxy
 
   @@configure = Configure.new
@@ -30,9 +31,11 @@ class GoogleSuggest
     end
   end
 
+  DEFAULT_GOOGLE_HOST = 'www.google.com'
   def initialize
     @home_language = @@configure.home_language
     @proxy = @@configure.proxy
+    @google_host = DEFAULT_GOOGLE_HOST
   end
 
   def suggest_for(keyword)
@@ -56,7 +59,6 @@ class GoogleSuggest
   end
 
   private
-  GOOGLE_HOST = 'www.google.com'
 
   def http
     if @proxy
@@ -65,7 +67,7 @@ class GoogleSuggest
     else
       http_class = Net::HTTP
     end
-    http_class.new(GOOGLE_HOST)
+    http_class.new(google_host)
   end
 
   def http_get(path, query) 
