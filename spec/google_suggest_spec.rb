@@ -9,7 +9,7 @@ describe GoogleSuggest do
     its(:proxy) { should be_nil }
   end
 
-  context "Class Methods" do
+  describe ".suggest_for" do
     before do
       google_suggest = GoogleSuggest.new
       res = Object.new
@@ -26,13 +26,9 @@ describe GoogleSuggest do
 
       @suggestions = GoogleSuggest.suggest_for('google')
     end
-     
-    it do 
-      @suggestions.size.should be 10
-    end
+
     it do
-      @suggestions.should be_all do
-      end
+      @suggestions.size.should be 10
     end
   end
 
@@ -60,7 +56,7 @@ describe GoogleSuggest do
     end
   end
 
-  context "#suggest_from method" do
+  describe "#suggest_from" do
     before :all do
       GoogleSuggest.configure do |c|
         c.home_language = 'us'
@@ -91,7 +87,6 @@ describe GoogleSuggest do
         not suggest['suggest'].nil?
       end
     end
-
 
     it 'all suggestions should have the value of the key \'num_queries\' 'do
       suggestions = @google_suggest.suggest_for 'google'
