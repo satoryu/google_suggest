@@ -41,10 +41,12 @@ describe GoogleSuggest do
       before do
         @configure = GoogleSuggest.configure
         @configure.home_language = 'ja'
+        @configure.region = 'ac'
         @configure.proxy = 'http://proxy.example.com'
       end
       subject { GoogleSuggest.new }
       its(:home_language) { should be_eql 'ja' }
+      its(:region) { should be_eql 'ac' }
       its(:proxy) { should be_eql 'http://proxy.example.com' }
     end
     context "#configure called and given block" do

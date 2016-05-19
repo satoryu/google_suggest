@@ -8,14 +8,16 @@ class GoogleSuggest
   class Configure
     attr_accessor :home_language
     attr_accessor :proxy
+    attr_accessor :region
 
     def initialize
       @home_language = 'en'
+      @region = nil
     end
   end
 
   attr_accessor :home_language
-  attr_accessor :google_host
+  attr_accessor :region
   attr_accessor :proxy
 
   @@configure = Configure.new
@@ -31,11 +33,10 @@ class GoogleSuggest
     end
   end
 
-  DEFAULT_GOOGLE_HOST = 'www.google.com'
   def initialize
     @home_language = @@configure.home_language
     @proxy = @@configure.proxy
-    @google_host = DEFAULT_GOOGLE_HOST
+    @region = @@configure.region
   end
 
   def suggest_for(keyword)
@@ -76,4 +77,8 @@ class GoogleSuggest
     http.request(req)
   end
 
+  DEFAULT_GOOGLE_HOST = 'www.google.com'
+  def google_host
+    DEFAULT_GOOGLE_HOST
+  end
 end
