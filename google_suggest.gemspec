@@ -2,7 +2,6 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'google_suggest/version'
-require 'rake'
 
 Gem::Specification.new do |spec|
   spec.name = 'google_suggest'
@@ -13,11 +12,11 @@ Gem::Specification.new do |spec|
   spec.email   = 'satoryu.1981@gmail.com'
   spec.homepage = 'http://github.com/satoryu/google_suggest/'
   spec.license       = "MIT"
-  spec.files = FileList[%w[
-    [A-Z]*
-    lib/**/*.rb
-    spec/**/*
-  ]]
+  spec.files = Dir[
+    'lib/**/*.rb',
+    '[A-Z]*',
+    'spec/**/*'
+  ]
 
   spec.add_runtime_dependency "nokogiri", '~> 1.6.0'
 
