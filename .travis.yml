@@ -4,7 +4,7 @@ rvm:
   - 2.3.1
   - ruby-head
 
-before_insall:
+before_install:
   - gem install bundler
 
 matrix:
