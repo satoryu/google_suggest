@@ -9,20 +9,18 @@ class GoogleSuggest
   attr_accessor :home_language
   attr_accessor :proxy
 
-  class << self
-    def configure
-      yield configuration if block_given?
+  def self.configure
+    yield configuration if block_given?
 
-      configuration
-    end
+    configuration
+  end
 
-    def configuration
-      @configuration ||= Configuration.new
-    end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
 
-    def suggest_for(keyword)
-      self.new.suggest_for(keyword)
-    end
+  def self.suggest_for(keyword)
+    self.new.suggest_for(keyword)
   end
 
   def initialize
