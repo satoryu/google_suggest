@@ -3,21 +3,13 @@
 require 'uri'
 require 'nokogiri'
 require 'net/http'
+require 'google_suggest/configuration'
 
 class GoogleSuggest
-  class Configure
-    attr_accessor :home_language
-    attr_accessor :proxy
-
-    def initialize
-      @home_language = 'en'
-    end
-  end
+  @@configure = Configuration.new
 
   attr_accessor :home_language
   attr_accessor :proxy
-
-  @@configure = Configure.new
 
   class << self
     def configure

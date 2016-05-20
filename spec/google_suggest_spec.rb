@@ -36,7 +36,7 @@ describe GoogleSuggest do
     end
   end
 
-  describe GoogleSuggest::Configure do
+  describe GoogleSuggest::Configuration do
     context "#configure called without block" do
       before do
         @configure = GoogleSuggest.configure
