@@ -33,10 +33,10 @@ class GoogleSuggest
     end
   end
 
-  def initialize
+  def initialize(options={})
     @home_language = @@configure.home_language
     @proxy = @@configure.proxy
-    @region = @@configure.region
+    @region = options[:region] || @@configure.region
   end
 
   def suggest_for(keyword)
@@ -79,6 +79,11 @@ class GoogleSuggest
 
   DEFAULT_GOOGLE_HOST = 'www.google.com'
   def google_host
-    DEFAULT_GOOGLE_HOST
+    case region
+    when :ac, 'ac'
+      'www.google.ac'
+    else
+      DEFAULT_GOOGLE_HOST
+    end
   end
 end

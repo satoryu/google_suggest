@@ -3,14 +3,21 @@ require 'spec_helper'
 
 describe GoogleSuggest do
   describe ".new" do
-    let(:args) { [] }
-    let(:google_suggest) { GoogleSuggest.new(*args) }
+    let(:args) { {} }
+    let(:google_suggest) { GoogleSuggest.new(args) }
 
     subject { google_suggest }
 
     its(:home_language) { should be_eql 'en' }
     its(:proxy) { should be_nil }
     its(:google_host) { should be_eql 'www.google.com' }
+
+    context 'when giving region option' do
+      let(:args) { { region: 'ac' } }
+
+      its(:home_language) { should be_eql 'en' }
+      its(:google_host) { should be_eql 'www.google.ac' }
+    end
   end
 
   describe ".suggest_for" do
