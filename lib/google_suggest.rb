@@ -6,15 +6,18 @@ require 'net/http'
 require 'google_suggest/configuration'
 
 class GoogleSuggest
-  @@configure = Configuration.new
-
   attr_accessor :home_language
   attr_accessor :proxy
 
   class << self
     def configure
-      yield @@configure if block_given?
-      @@configure
+      yield configuration if block_given?
+
+      configuration
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
     end
 
     def suggest_for(keyword)
@@ -23,8 +26,8 @@ class GoogleSuggest
   end
 
   def initialize
-    @home_language = @@configure.home_language
-    @proxy = @@configure.proxy
+    @home_language = self.class.configuration.home_language
+    @proxy = self.class.configuration.proxy
   end
 
   def suggest_for(keyword)
