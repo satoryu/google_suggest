@@ -39,27 +39,31 @@ describe GoogleSuggest do
     end
   end
 
-  describe GoogleSuggest::Configuration do
-    context "#configure called without block" do
+  describe '.configure' do
+    context "When called without block" do
       before do
         @configure = GoogleSuggest.configure
         @configure.home_language = 'ja'
         @configure.region = 'ac'
         @configure.proxy = 'http://proxy.example.com'
       end
+
       subject { GoogleSuggest.new }
+
       its(:home_language) { should be_eql 'ja' }
       its(:region) { should be_eql 'ac' }
       its(:proxy) { should be_eql 'http://proxy.example.com' }
     end
-    context "#configure called and given block" do
+    context "When called with given block" do
       before do
         GoogleSuggest.configure do |c|
           c.home_language = 'us'
           c.proxy = 'http://proxy.example.com'
         end
       end
+
       subject { GoogleSuggest.new }
+
       its(:home_language) { should be_eql 'us' }
       its(:proxy) { should be_eql 'http://proxy.example.com' }
     end
