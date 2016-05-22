@@ -55,7 +55,7 @@ class GoogleSuggest
 
   def http
     if @proxy
-      proxy_url = URI.parse(@proxy) 
+      proxy_url = URI.parse(@proxy)
       http_class = Net::HTTP.Proxy(proxy_url.host, proxy_url.port)
     else
       http_class = Net::HTTP
@@ -63,7 +63,7 @@ class GoogleSuggest
     http_class.new(google_host)
   end
 
-  def http_get(path, query) 
+  def http_get(path, query)
     path = path + '?' + query.map{|k,v| "#{k}=#{v}"}.join('&')
     req = Net::HTTP::Get.new(path)
     http.request(req)
