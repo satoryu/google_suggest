@@ -69,13 +69,7 @@ class GoogleSuggest
     http.request(req)
   end
 
-  DEFAULT_GOOGLE_HOST = 'www.google.com'
   def google_host
-    case region
-    when :ac, 'ac'
-      'www.google.ac'
-    else
-      DEFAULT_GOOGLE_HOST
-    end
+    Region.host_for(region)
   end
 end
