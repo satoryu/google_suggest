@@ -3,40 +3,31 @@
 require 'uri'
 require 'nokogiri'
 require 'net/http'
+require 'google_suggest/configuration'
 
 class GoogleSuggest
-  class Configure
-    attr_accessor :home_language
-    attr_accessor :proxy
-    attr_accessor :region
-
-    def initialize
-      @home_language = 'en'
-      @region = nil
-    end
-  end
-
   attr_accessor :home_language
   attr_accessor :region
   attr_accessor :proxy
 
-  @@configure = Configure.new
+  def self.configure
+    yield configuration if block_given?
 
-  class << self
-    def configure
-      yield @@configure if block_given?
-      @@configure
-    end
+    configuration
+  end
 
-    def suggest_for(keyword)
-      self.new.suggest_for(keyword)
-    end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.suggest_for(keyword)
+    self.new.suggest_for(keyword)
   end
 
   def initialize(options={})
-    @home_language = @@configure.home_language
-    @proxy = @@configure.proxy
-    @region = options[:region] || @@configure.region
+    @home_language = self.class.configuration.home_language
+    @proxy = self.class.configuration.proxy
+    @region = options[:region] || self.class.configure.region
   end
 
   def suggest_for(keyword)
