@@ -4,6 +4,7 @@ require 'uri'
 require 'nokogiri'
 require 'net/http'
 require 'google_suggest/configuration'
+require 'google_suggest/region'
 
 class GoogleSuggest
   attr_accessor :home_language
