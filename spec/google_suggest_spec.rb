@@ -25,11 +25,7 @@ describe GoogleSuggest do
       google_suggest = GoogleSuggest.new
       res = Object.new
       allow(res).to receive(:body) do
-        doc = nil
-        File.open(File.join(File.dirname(__FILE__), 'sample_us.xml')) do |f|
-          doc = f.read
-        end
-        doc
+        File.read(File.join(File.dirname(__FILE__), 'sample_us.xml'))
       end
       allow(google_suggest).to receive(:http_get) { res }
       suggestions = google_suggest.suggest_for('google')
