@@ -22,7 +22,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`GoogleSuggest.suggest_for` gives suggestions for a given keyword. 
+
+```ruby
+GoogleSuggest.suggest_for 'google'
+=> [{"suggestion"=>"google"}, {"suggestion"=>"google maps"}, {"suggestion"=>"google translate"}, {"suggestion"=>"google classroom"}, {"suggestion"=>"google docs"}, {"suggestion"=>"google drive"}, {"suggestion"=>"google earth"}, {"suggestion"=>"google play"}, {"suggestion"=>"google scholar"}, {"suggestion"=>"google slides"}]
+
+```
+
+and allows developers to switch the endpoint by specifying `region` option:
+
+```ruby
+GoogleSuggest.suggest_for 'google'
+=> [{"suggestion"=>"google maps"}, {"suggestion"=>"google"}, {"suggestion"=>"google translate"}, {"suggestion"=>"google drive"}, {"suggestion"=>"google scholar"}, {"suggestion"=>"google docs"}, {"suggestion"=>"google news"}, {"suggestion"=>"google flights"}, {"suggestion"=>"google play"}, {"suggestion"=>"google earth"}]
+```
 
 ## Development
 
