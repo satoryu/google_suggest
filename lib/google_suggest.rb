@@ -21,8 +21,8 @@ class GoogleSuggest
     @configuration ||= Configuration.new
   end
 
-  def self.suggest_for(keyword)
-    self.new.suggest_for(keyword)
+  def self.suggest_for(keyword, options={})
+    self.new(options).suggest_for(keyword)
   end
 
   def initialize(options={})

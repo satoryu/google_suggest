@@ -37,6 +37,16 @@ describe GoogleSuggest do
     it do
       @suggestions.size.should be 10
     end
+
+    context 'When passing Hash as options' do
+      specify 'should initialize new object with the options.' do
+        obj = double(:google_suggest)
+        expect(obj).to receive(:suggest_for).with('google')
+        expect(GoogleSuggest).to receive(:new).with(region: 'jp').and_return(obj)
+
+        GoogleSuggest.suggest_for('google', region: 'jp')
+      end
+    end
   end
 
   describe '.configure' do
