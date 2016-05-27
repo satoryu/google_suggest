@@ -33,9 +33,11 @@ GoogleSuggest.suggest_for 'google'
 and allows developers to switch the endpoint by specifying `region` option:
 
 ```ruby
-GoogleSuggest.suggest_for 'google'
+GoogleSuggest.suggest_for 'google', region: 'jp'
 => [{"suggestion"=>"google maps"}, {"suggestion"=>"google"}, {"suggestion"=>"google translate"}, {"suggestion"=>"google drive"}, {"suggestion"=>"google scholar"}, {"suggestion"=>"google docs"}, {"suggestion"=>"google news"}, {"suggestion"=>"google flights"}, {"suggestion"=>"google play"}, {"suggestion"=>"google earth"}]
 ```
+
+You can get all available region codes by `GoogleSuggest::GOOGLE_HOSTS.keys`. 
 
 ## Development
 
