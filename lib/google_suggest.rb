@@ -35,20 +35,10 @@ class GoogleSuggest
     query = {:output => 'toolbar',
              :hl => self.home_language,
              :q => URI.encode(keyword)}
+
     res = http_get('/complete/search', query)
-    xml = Nokogiri::XML(res.body.to_s)
-    suggestions = []
-    xml.css('toplevel CompleteSuggestion').each do |node|
-      suggest = {}
-      node.children.each do |child|
-        suggest[child.name] = (child['data'] || child['int'].to_i)
-      end
-      if suggest['suggestion'] and not suggest['suggestion'].valid_encoding?
-        suggest['suggestion'].force_encoding('Shift_JIS').encode!('UTF-8')
-      end
-      suggestions << suggest
-    end
-    return suggestions
+
+    return parse(res.body.to_s)
   end
 
   private
@@ -71,5 +61,22 @@ class GoogleSuggest
 
   def google_host
     Region.host_for(region)
+  end
+
+  def parse(doc)
+    xml = Nokogiri::XML(doc)
+    suggestions = []
+    xml.css('toplevel CompleteSuggestion').each do |node|
+      suggest = {}
+      node.children.each do |child|
+        suggest[child.name] = (child['data'] || child['int'].to_i)
+      end
+      if suggest['suggestion'] and not suggest['suggestion'].valid_encoding?
+        suggest['suggestion'].force_encoding('Shift_JIS').encode!('UTF-8')
+      end
+      suggestions << suggest
+    end
+
+    return suggestions
   end
 end
