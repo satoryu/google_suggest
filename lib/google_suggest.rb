@@ -1,8 +1,6 @@
-# encoding: utf-8
-
 require 'uri'
-require 'nokogiri'
 require 'net/http'
+require 'rexml/document'
 require 'google_suggest/configuration'
 require 'google_suggest/region'
 
@@ -35,20 +33,10 @@ class GoogleSuggest
     query = {:output => 'toolbar',
              :hl => self.home_language,
              :q => URI.encode(keyword)}
+
     res = http_get('/complete/search', query)
-    xml = Nokogiri::XML(res.body.to_s)
-    suggestions = []
-    xml.css('toplevel CompleteSuggestion').each do |node|
-      suggest = {}
-      node.children.each do |child|
-        suggest[child.name] = (child['data'] || child['int'].to_i)
-      end
-      if suggest['suggestion'] and not suggest['suggestion'].valid_encoding?
-        suggest['suggestion'].force_encoding('Shift_JIS').encode!('UTF-8')
-      end
-      suggestions << suggest
-    end
-    return suggestions
+
+    return parse(res.body.to_s)
   end
 
   private
@@ -71,5 +59,18 @@ class GoogleSuggest
 
   def google_host
     Region.host_for(region)
+  end
+
+  def parse(doc)
+    xml = REXML::Document.new(doc)
+    suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').each_with_object([]) do |suggest, res|
+      data = suggest.attribute('data').value
+      if data and !data.valid_encoding?
+        data.force_encoding('Shift_JIS').encode!('UTF-8')
+      end
+      res << data
+    end
+
+    return suggestions
   end
 end

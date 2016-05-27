@@ -107,14 +107,7 @@ describe GoogleSuggest do
     it 'all suggestions should have the value of the key \'suggest\' 'do
       suggestions = @google_suggest.suggest_for 'google'
       suggestions.should be_all do |suggest|
-        not suggest['suggest'].nil?
-      end
-    end
-
-    it 'all suggestions should have the value of the key \'num_queries\' 'do
-      suggestions = @google_suggest.suggest_for 'google'
-      suggestions.should be_all do |suggest|
-        not suggest['num_queries'].nil?
+        not suggest.nil?
       end
     end
   end
@@ -137,7 +130,8 @@ describe GoogleSuggest do
       end
       allow(@google_suggest).to receive(:http_get) { res }
     end
-      subject {@google_suggest.suggest_for('グーグル').shift['suggestion']}
+
+    subject { @google_suggest.suggest_for('グーグル').shift }
 
     its(:encoding) { should be Encoding.find("UTF-8") }
     it { should be_valid_encoding }
