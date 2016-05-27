@@ -1,8 +1,6 @@
-# encoding: utf-8
-
 require 'uri'
-require 'nokogiri'
 require 'net/http'
+require 'rexml/document'
 require 'google_suggest/configuration'
 require 'google_suggest/region'
 
@@ -64,17 +62,13 @@ class GoogleSuggest
   end
 
   def parse(doc)
-    xml = Nokogiri::XML(doc)
-    suggestions = []
-    xml.css('toplevel CompleteSuggestion').each do |node|
-      suggest = {}
-      node.children.each do |child|
-        suggest[child.name] = (child['data'] || child['int'].to_i)
+    xml = REXML::Document.new(doc)
+    suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').each_with_object([]) do |suggest, res|
+      data = suggest.attribute('data').value
+      if data and !data.valid_encoding?
+        data.force_encoding('Shift_JIS').encode!('UTF-8')
       end
-      if suggest['suggestion'] and not suggest['suggestion'].valid_encoding?
-        suggest['suggestion'].force_encoding('Shift_JIS').encode!('UTF-8')
-      end
-      suggestions << suggest
+      res << data
     end
 
     return suggestions
