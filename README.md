@@ -26,15 +26,14 @@ Or install it yourself as:
 
 ```ruby
 GoogleSuggest.suggest_for 'google'
-=> [{"suggestion"=>"google"}, {"suggestion"=>"google maps"}, {"suggestion"=>"google translate"}, {"suggestion"=>"google classroom"}, {"suggestion"=>"google docs"}, {"suggestion"=>"google drive"}, {"suggestion"=>"google earth"}, {"suggestion"=>"google play"}, {"suggestion"=>"google scholar"}, {"suggestion"=>"google slides"}]
-
+=> ["google", "google maps", "google translate", "google classroom", "google docs", "google drive", "google earth", "google play", "google scholar", "google slides"]
 ```
 
 and allows developers to switch the endpoint by specifying `region` option:
 
 ```ruby
 GoogleSuggest.suggest_for 'google', region: 'jp'
-=> [{"suggestion"=>"google maps"}, {"suggestion"=>"google"}, {"suggestion"=>"google translate"}, {"suggestion"=>"google drive"}, {"suggestion"=>"google scholar"}, {"suggestion"=>"google docs"}, {"suggestion"=>"google news"}, {"suggestion"=>"google flights"}, {"suggestion"=>"google play"}, {"suggestion"=>"google earth"}]
+=> ["google", "google maps", "google drive", "google translate", "google scholar", "google docs", "google flights", "google news", "google play", "google earth"]
 ```
 
 You can get all available region codes by `GoogleSuggest::Region.codes`.
