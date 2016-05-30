@@ -197,7 +197,7 @@ class GoogleSuggest
       za: 'www.google.co.za',
       zm: 'www.google.co.zm',
       zw: 'www.google.co.zw'
-    }
+    }.freeze
 
     def self.host_for(region_code=nil)
       region_code = region_code.to_sym if region_code.is_a?(String)
