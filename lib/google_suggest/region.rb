@@ -200,9 +200,8 @@ class GoogleSuggest
 
   class Region
     def self.host_for(region_code=nil)
-      region_code = :com if region_code.nil?
       region_code = region_code.to_sym if region_code.is_a?(String)
-      GOOGLE_HOSTS[region_code] || DEFAULT_GOOGLE_HOST
+      GOOGLE_HOSTS[region_code] || GOOGLE_HOSTS[:com]
     end
   end
 end
