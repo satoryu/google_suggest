@@ -1,6 +1,6 @@
 class GoogleSuggest
   class Region
-    GOOGLE_HOSTS = {
+    GOOGLE_HOSTS = { # :nodoc:
       ac: 'www.google.ac',
       ad: 'www.google.ad',
       ae: 'www.google.ae',
