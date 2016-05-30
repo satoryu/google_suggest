@@ -26,4 +26,11 @@ describe GoogleSuggest::Region do
       end
     end
   end
+
+  describe '.codes' do
+    subject { GoogleSuggest::Region.codes }
+
+    it { should be_a(Array) }
+    it { should be_all { |k| k.is_a?(Symbol) } }
+  end
 end

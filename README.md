@@ -36,7 +36,7 @@ GoogleSuggest.suggest_for 'google', region: 'jp'
 => ["google", "google maps", "google drive", "google translate", "google scholar", "google docs", "google flights", "google news", "google play", "google earth"]
 ```
 
-You can get all available region codes by `GoogleSuggest::Region::GOOGLE_HOSTS.keys`.
+You can get all available region codes by `GoogleSuggest::Region.codes`.
 
 ## Development
 

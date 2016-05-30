@@ -203,5 +203,9 @@ class GoogleSuggest
       region_code = region_code.to_sym if region_code.is_a?(String)
       GOOGLE_HOSTS[region_code] || GOOGLE_HOSTS[:com]
     end
+
+    def self.codes
+      GOOGLE_HOSTS.keys
+    end
   end
 end
