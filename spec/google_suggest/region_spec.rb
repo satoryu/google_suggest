@@ -18,5 +18,12 @@ describe GoogleSuggest::Region do
         should be_eql('www.google.ac')
       end
     end
+    context 'when giving an undefined region code like "zz"' do
+      let(:region_code) { 'zz' }
+
+      it 'should be the default host' do
+        should be_eql('www.google.com')
+      end
+    end
   end
 end
