@@ -1,5 +1,6 @@
 # GoogleSuggest
 
+[![Gem Version](https://badge.fury.io/rb/google_suggest.svg)](https://badge.fury.io/rb/google_suggest)
 [![Build Status](https://travis-ci.org/satoryu/google_suggest.svg?branch=master)](https://travis-ci.org/satoryu/google_suggest)
 
 This gem allows you to access google suggest API in your ruby codes. 
