@@ -18,22 +18,12 @@ describe GoogleSuggest do
       it { is_expected.to be_nil }
     end
 
-    describe '#google_host' do
-      subject { super().send :google_host }
-      it { is_expected.to be_eql 'www.google.com' }
-    end
-
     context 'when giving region option' do
       let(:args) { { region: 'ac' } }
 
       describe '#home_language' do
         subject { super().home_language }
         it { is_expected.to be_eql 'en' }
-      end
-
-      describe '#google_host' do
-        subject { super().send :google_host }
-        it { is_expected.to be_eql 'www.google.ac' }
       end
     end
   end
