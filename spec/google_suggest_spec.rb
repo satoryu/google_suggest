@@ -8,15 +8,33 @@ describe GoogleSuggest do
 
     subject { google_suggest }
 
-    its(:home_language) { should be_eql 'en' }
-    its(:proxy) { should be_nil }
-    its(:google_host) { should be_eql 'www.google.com' }
+    describe '#home_language' do
+      subject { super().home_language }
+      it { is_expected.to be_eql 'en' }
+    end
+
+    describe '#proxy' do
+      subject { super().proxy }
+      it { is_expected.to be_nil }
+    end
+
+    describe '#google_host' do
+      subject { super().send :google_host }
+      it { is_expected.to be_eql 'www.google.com' }
+    end
 
     context 'when giving region option' do
       let(:args) { { region: 'ac' } }
 
-      its(:home_language) { should be_eql 'en' }
-      its(:google_host) { should be_eql 'www.google.ac' }
+      describe '#home_language' do
+        subject { super().home_language }
+        it { is_expected.to be_eql 'en' }
+      end
+
+      describe '#google_host' do
+        subject { super().send :google_host }
+        it { is_expected.to be_eql 'www.google.ac' }
+      end
     end
   end
 
@@ -29,13 +47,13 @@ describe GoogleSuggest do
       end
       allow(google_suggest).to receive(:http_get) { res }
       suggestions = google_suggest.suggest_for('google')
-      allow(GoogleSuggest).to receive(:new).and_return { double('google_suggest', :suggest_for => suggestions) }
+      allow(GoogleSuggest).to receive(:new) { double('google_suggest', :suggest_for => suggestions) }
 
       @suggestions = GoogleSuggest.suggest_for('google')
     end
 
     it do
-      @suggestions.size.should be 10
+      expect(@suggestions.size).to be 10
     end
 
     context 'When passing Hash as options' do
@@ -60,9 +78,20 @@ describe GoogleSuggest do
 
       subject { GoogleSuggest.new }
 
-      its(:home_language) { should be_eql 'ja' }
-      its(:region) { should be_eql 'ac' }
-      its(:proxy) { should be_eql 'http://proxy.example.com' }
+      describe '#home_language' do
+        subject { super().home_language }
+        it { is_expected.to be_eql 'ja' }
+      end
+
+      describe '#region' do
+        subject { super().region }
+        it { is_expected.to be_eql 'ac' }
+      end
+
+      describe '#proxy' do
+        subject { super().proxy }
+        it { is_expected.to be_eql 'http://proxy.example.com' }
+      end
     end
     context "When called with given block" do
       before do
@@ -74,8 +103,15 @@ describe GoogleSuggest do
 
       subject { GoogleSuggest.new }
 
-      its(:home_language) { should be_eql 'us' }
-      its(:proxy) { should be_eql 'http://proxy.example.com' }
+      describe '#home_language' do
+        subject { super().home_language }
+        it { is_expected.to be_eql 'us' }
+      end
+
+      describe '#proxy' do
+        subject { super().proxy }
+        it { is_expected.to be_eql 'http://proxy.example.com' }
+      end
     end
   end
 
@@ -101,12 +137,12 @@ describe GoogleSuggest do
 
     it do
       suggestions = @google_suggest.suggest_for 'google'
-      suggestions.size.should == 10
+      expect(suggestions.size).to eq(10)
     end
 
     it 'all suggestions should have the value of the key \'suggest\' 'do
       suggestions = @google_suggest.suggest_for 'google'
-      suggestions.should be_all do |suggest|
+      expect(suggestions).to be_all do |suggest|
         not suggest.nil?
       end
     end
@@ -133,7 +169,10 @@ describe GoogleSuggest do
 
     subject { @google_suggest.suggest_for('グーグル').shift }
 
-    its(:encoding) { should be Encoding.find("UTF-8") }
-    it { should be_valid_encoding }
+    describe '#encoding' do
+      subject { super().encoding }
+      it { is_expected.to be Encoding.find("UTF-8") }
+    end
+    it { is_expected.to be_valid_encoding }
   end
 end
