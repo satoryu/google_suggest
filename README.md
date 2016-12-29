@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/google_suggest.svg)](https://badge.fury.io/rb/google_suggest)
 [![Build Status](https://travis-ci.org/satoryu/google_suggest.svg?branch=master)](https://travis-ci.org/satoryu/google_suggest)
-[![Coverage Status](https://coveralls.io/repos/github/satoryu/google_suggest/badge.svg?branch=measure_coverage)](https://coveralls.io/github/satoryu/google_suggest)
+[![Test Coverage](https://codeclimate.com/github/satoryu/google_suggest/badges/coverage.svg)](https://codeclimate.com/github/satoryu/google_suggest/coverage)
 
 This gem allows you to access google suggest API in your ruby codes. 
 
