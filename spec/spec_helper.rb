@@ -1,8 +1,11 @@
 # encoding: utf-8
 
 if ENV['CI']
-  require 'coveralls'
-  Coveralls.wear!
+  require 'simplecov'
+
+  SimpleCov.start do
+    add_filter "/spec/"
+  end
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..',
