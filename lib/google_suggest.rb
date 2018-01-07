@@ -33,7 +33,7 @@ class GoogleSuggest
     query = {
       output: 'toolbar',
       hl: home_language,
-      q: URI.encode(keyword)
+      q: keyword
     }
 
     res = http_get('/complete/search', query)
@@ -54,7 +54,7 @@ class GoogleSuggest
   end
 
   def http_get(path, query)
-    path = path + '?' + query.map{|k,v| "#{k}=#{v}"}.join('&')
+    path = path + '?' + URI.encode_www_form(query)
     req = Net::HTTP::Get.new(path)
     http.request(req)
   end
