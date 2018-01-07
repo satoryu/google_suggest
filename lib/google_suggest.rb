@@ -20,23 +20,25 @@ class GoogleSuggest
   end
 
   def self.suggest_for(keyword, options={})
-    self.new(options).suggest_for(keyword)
+    new(options).suggest_for(keyword)
   end
 
-  def initialize(options={})
+  def initialize(options = {})
     @home_language = self.class.configuration.home_language
     @proxy = self.class.configuration.proxy
     @region = options[:region] || self.class.configure.region
   end
 
   def suggest_for(keyword)
-    query = {:output => 'toolbar',
-             :hl => self.home_language,
-             :q => URI.encode(keyword)}
+    query = {
+      output: 'toolbar',
+      hl: home_language,
+      q: URI.encode(keyword)
+    }
 
     res = http_get('/complete/search', query)
 
-    return parse(res.body.to_s)
+    parse(res.body.to_s)
   end
 
   private
