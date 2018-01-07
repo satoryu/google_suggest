@@ -6,7 +6,6 @@ class GoogleSuggest
       ae: 'www.google.ae',
       af: 'www.google.com.af',
       ag: 'www.google.com.ag',
-      ag: 'www.google.com.ag',
       ai: 'www.google.com.ai',
       al: 'www.google.al',
       am: 'www.google.am',

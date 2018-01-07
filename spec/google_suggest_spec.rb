@@ -1,8 +1,7 @@
-# encoding: utf-8
 require 'spec_helper'
 
 describe GoogleSuggest do
-  describe ".new" do
+  describe '.new' do
     let(:args) { {} }
     let(:google_suggest) { GoogleSuggest.new(args) }
 
@@ -58,7 +57,7 @@ describe GoogleSuggest do
   end
 
   describe '.configure' do
-    context "When called without block" do
+    context 'When called without block' do
       before do
         @configure = GoogleSuggest.configure
         @configure.home_language = 'ja'
@@ -83,7 +82,7 @@ describe GoogleSuggest do
         it { is_expected.to be_eql 'http://proxy.example.com' }
       end
     end
-    context "When called with given block" do
+    context 'When called with given block' do
       before do
         GoogleSuggest.configure do |c|
           c.home_language = 'us'
@@ -105,7 +104,7 @@ describe GoogleSuggest do
     end
   end
 
-  describe "#suggest_from" do
+  describe '#suggest_from' do
     before :all do
       GoogleSuggest.configure do |c|
         c.home_language = 'us'
