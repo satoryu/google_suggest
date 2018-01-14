@@ -183,6 +183,7 @@ class GoogleSuggest
       ua: 'www.google.com.ua',
       ug: 'www.google.co.ug',
       uk: 'www.google.co.uk',
+      us: 'www.google.com',
       com: 'www.google.com',
       uy: 'www.google.com.uy',
       uz: 'www.google.co.uz',
