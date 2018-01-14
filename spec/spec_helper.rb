@@ -1,5 +1,3 @@
-require File.expand_path(File.join(__dir__, '..', 'lib', 'google_suggest'))
-
 if ENV['CI']
   require 'simplecov'
 
@@ -8,6 +6,7 @@ if ENV['CI']
   end
 end
 
+require File.expand_path(File.join(__dir__, '..', 'lib', 'google_suggest'))
 require 'webmock/rspec'
 
 RSpec.configure do |c|
