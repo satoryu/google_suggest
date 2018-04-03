@@ -19,7 +19,7 @@ class GoogleSuggest
     @configuration ||= Configuration.new
   end
 
-  def self.suggest_for(keyword, options={})
+  def self.suggest_for(keyword, options = {})
     new(options).suggest_for(keyword)
   end
 
@@ -73,6 +73,6 @@ class GoogleSuggest
       res << data
     end
 
-    return suggestions
+    suggestions
   end
 end
