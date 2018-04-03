@@ -199,7 +199,7 @@ class GoogleSuggest
       zw: 'www.google.co.zw'
     }.freeze
 
-    def self.host_for(region_code=nil)
+    def self.host_for(region_code = nil)
       region_code = region_code.to_sym if region_code.is_a?(String)
       GOOGLE_HOSTS[region_code] || GOOGLE_HOSTS[:com]
     end

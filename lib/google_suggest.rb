@@ -19,7 +19,7 @@ class GoogleSuggest
     @configuration ||= Configuration.new
   end
 
-  def self.suggest_for(keyword, options={})
+  def self.suggest_for(keyword, options = {})
     new(options).suggest_for(keyword)
   end
 
@@ -67,12 +67,12 @@ class GoogleSuggest
     xml = REXML::Document.new(doc)
     suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').each_with_object([]) do |suggest, res|
       data = suggest.attribute('data').value
-      if data and !data.valid_encoding?
+      if data && !data.valid_encoding?
         data.force_encoding('Shift_JIS').encode!('UTF-8')
       end
       res << data
     end
 
-    return suggestions
+    suggestions
   end
 end
