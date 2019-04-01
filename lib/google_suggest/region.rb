@@ -1,5 +1,5 @@
 class GoogleSuggest
-  class Region
+  module Region
     GOOGLE_HOSTS = { # :nodoc:
       ac: 'www.google.ac',
       ad: 'www.google.ad',
@@ -199,13 +199,15 @@ class GoogleSuggest
       zw: 'www.google.co.zw'
     }.freeze
 
-    def self.host_for(region_code = nil)
+    def host_for(region_code = nil)
       region_code = region_code.to_sym if region_code.is_a?(String)
       GOOGLE_HOSTS[region_code] || GOOGLE_HOSTS[:com]
     end
 
-    def self.codes
+    def codes
       GOOGLE_HOSTS.keys
     end
+
+    module_function :host_for, :codes
   end
 end
