@@ -1,6 +1,6 @@
 # ChangeLog
 
-## (Next Release)
+## GoogleSuggest 1.0.2
 
 * Drop ruby 2.3 from supported ruby versions. [#25](https://github.com/satoryu/google_suggest/pull/25)
 * Made `Region` module since it has never been instantiated. [#26](https://github.com/satoryu/google_suggest/pull/26)
