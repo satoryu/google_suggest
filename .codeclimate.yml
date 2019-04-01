@@ -1,6 +1,9 @@
 engines:
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Gemspec/RequiredRubyVersion:
+        enabled: false
   duplication:
     enabled: true
     config:

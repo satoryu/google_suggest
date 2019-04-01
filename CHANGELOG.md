@@ -1,9 +1,14 @@
+# ChangeLog
+
+## (Next Release)
+
+* Drop ruby 2.3 from supported ruby versions. [#25](https://github.com/satoryu/google_suggest/pull/25)
+
 ## GoogleSuggest 1.0.1
 
 * Drop ruby 2.1 and 2.2 from and add ruby 2.5 supported ruby versions. [#19](https://github.com/satoryu/google_suggest/pull/19)
 [#22](https://github.com/satoryu/google_suggest/pull/22)
 * Starting use Webmock and RSpec 3.[#15](https://github.com/satoryu/google_suggest/pull/15)[#21](https://github.com/satoryu/google_suggest/pull/21)
-
 
 ## GoogleSuggest 1.0.0
 
