@@ -64,13 +64,10 @@ class GoogleSuggest
   end
 
   def parse(doc)
+    doc = doc.encode('UTF-8', 'Shift_JIS') unless doc.valid_encoding?
     xml = REXML::Document.new(doc)
-    suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').each_with_object([]) do |suggest, res|
-      data = suggest.attribute('data').value
-      if data && !data.valid_encoding?
-        data.force_encoding('Shift_JIS').encode!('UTF-8')
-      end
-      res << data
+    suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').map do |suggest|
+      suggest.attribute('data').value
     end
 
     suggestions
