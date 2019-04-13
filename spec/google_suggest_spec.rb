@@ -99,7 +99,7 @@ describe GoogleSuggest do
     end
   end
 
-  describe '#suggest_from' do
+  describe '#suggest_for' do
     before :all do
       GoogleSuggest.configure do |c|
         c.home_language = 'us'
