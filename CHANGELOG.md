@@ -1,5 +1,9 @@
 # ChangeLog
 
+## GoogleSuggest 1.0.3
+
+* BugFix: Failed to parse Suggest API response since encoding issue. [#29](https://github.com/satoryu/google_suggest/pull/29)
+
 ## GoogleSuggest 1.0.2
 
 * Drop ruby 2.3 from supported ruby versions. [#25](https://github.com/satoryu/google_suggest/pull/25)
