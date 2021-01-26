@@ -1,10 +1,10 @@
 # GoogleSuggest
 
 [![Gem Version](https://badge.fury.io/rb/google_suggest.svg)](https://badge.fury.io/rb/google_suggest)
-[![Build Status](https://travis-ci.org/satoryu/google_suggest.svg?branch=master)](https://travis-ci.org/satoryu/google_suggest)
+[![CI](https://github.com/satoryu/google_suggest/workflows/CI/badge.svg)](https://github.com/satoryu/google_suggest/actions?query=workflow%3ACI)
 [![Test Coverage](https://codeclimate.com/github/satoryu/google_suggest/badges/coverage.svg)](https://codeclimate.com/github/satoryu/google_suggest/coverage)
 
-This gem allows you to access google suggest API in your ruby codes. 
+This gem allows you to access google suggest API in your ruby codes.
 
 ## Installation
 
@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-`GoogleSuggest.suggest_for` gives suggestions for a given keyword. 
+`GoogleSuggest.suggest_for` gives suggestions for a given keyword.
 
 ```ruby
 GoogleSuggest.suggest_for 'google'
