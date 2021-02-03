@@ -1,5 +1,10 @@
 # ChangeLog
 
+## GoogleSuggest 1.1.0
+
+* Migrate CI from Travis CI to GitHub Actions. [#32](https://github.com/satoryu/google_suggest/pull/32)
+  * And from this version, starts to support ruby v3.0
+
 ## GoogleSuggest 1.0.3
 
 * BugFix: Failed to parse Suggest API response since encoding issue. [#29](https://github.com/satoryu/google_suggest/pull/29)
