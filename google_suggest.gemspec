@@ -5,7 +5,7 @@ require 'google_suggest/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'google_suggest'
-  spec.required_ruby_version = '>= 2.5.0'
+  spec.required_ruby_version = '>= 2.6.0'
   spec.summary = 'A gem which allows us to retrieve suggest words from Google in your Ruby Code.'
   spec.version = GoogleSuggest::VERSION
   spec.author  = 'Tatsuya Sato'
