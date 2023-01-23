@@ -19,5 +19,14 @@ describe GoogleSuggest::Parser do
 
       expect(actual).to match_array(['google translate'])
     end
+
+    context 'When no nodes matche with a given path' do
+      it 'returns empty array' do
+        parser = GoogleSuggest::Parser.new(doc)
+        actual = parser.parse('/no/matched/path')
+
+        expect(actual).to be_empty
+      end
+    end
   end
 end
