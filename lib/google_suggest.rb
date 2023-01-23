@@ -3,6 +3,7 @@ require 'net/http'
 require 'rexml/document'
 require 'google_suggest/configuration'
 require 'google_suggest/region'
+require 'google_suggest/parser'
 
 class GoogleSuggest
   attr_accessor :home_language
