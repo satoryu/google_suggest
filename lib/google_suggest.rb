@@ -1,8 +1,8 @@
 require 'uri'
 require 'net/http'
-require 'rexml/document'
 require 'google_suggest/configuration'
 require 'google_suggest/region'
+require 'google_suggest/parser'
 
 class GoogleSuggest
   attr_accessor :home_language
@@ -65,10 +65,8 @@ class GoogleSuggest
 
   def parse(doc)
     doc = doc.encode('UTF-8', 'Shift_JIS') unless doc.valid_encoding?
-    xml = REXML::Document.new(doc)
-    suggestions = REXML::XPath.match(xml, '/toplevel/CompleteSuggestion/suggestion').map do |suggest|
-      suggest.attribute('data').value
-    end
+    parser = Parser.new(doc)
+    suggestions = parser.parse('/toplevel/CompleteSuggestion/suggestion')
 
     suggestions
   end
